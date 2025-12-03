@@ -62,36 +62,38 @@ If everything is set up correctly, you should see your new app running in the An
 
 This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
-## Step 3: Modify your app
 
-Now that you have successfully run the app, let's make changes!
+## Step 2 UI layout
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+- The screen is divided into three main sections:
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+### Command Input (CommandInput component)
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+- A multiline TextInput for typing commands like:
 
-## Congratulations! :tada:
+- PLACE 0,0,NORTH
+- MOVE
+- REPORT
 
-You've successfully run and modified your React Native App. :partying_face:
 
-### Now what?
+- A "Run Commands" button that triggers runSimulation.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+### Grid View (Grid component)
 
-# Troubleshooting
+- A 5×5 grid rendered with FlatList based on generateGridData(TABLE_SIZE).
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+- Each cell shows either:
 
-# Learn More
+- Its coordinates (x,y), or
 
-To learn more about React Native, take a look at the following resources:
+- The robot (🤖) and an arrow (↑, ↓, →, ←) indicating the facing direction.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- The robot’s position is highlighted with a different background colour.
+
+### REPORT Output (ReportOutput component)
+
+- A card that prints all collected report lines.
+
+- If there is no REPORT yet, it shows a helper text (defined in TEXTS.reportOutputText).
+
+- This mirrors the challenge requirement: you can see the robot on the grid and also see the exact text output from REPORT
